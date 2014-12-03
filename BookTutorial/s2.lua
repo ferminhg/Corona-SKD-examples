@@ -5,6 +5,9 @@ function new()
 
 	display.setStatusBar( display.HiddenStatusBar )
 
+	_W = display.contentWidth
+	_H = display.contentHeight
+
 	local function pageRight(event)
 		if event.phase == 'ended' then
 			--cambia pagina hacia delante
@@ -21,17 +24,17 @@ function new()
 		return true
 	end
 
-	local bkg = display.newImageRect( "escena2.jpg", 1024, 768 )
-	bkg.x = 512
-	bkg.y = 384
+	local bkg = display.newImageRect( "escena2.jpg",  _W, _H )
+	bkg.x = _W/2
+	bkg.y = _H/2
 
 	local arrowR = display.newImageRect( "arrow.png", 50, 50)
-	arrowR.x = 974
-	arrowR.y = 726
+	arrowR.x = _W - 50
+	arrowR.y = _H - 50
 
 	local arrowL = display.newImageRect( "arrow.png", 50, 50)
 	arrowL.x = 54
-	arrowL.y = 726
+	arrowL.y = _H - 50
 	arrowL.xScale = -1
 
 	arrowR:addEventListener( "touch", pageRight )

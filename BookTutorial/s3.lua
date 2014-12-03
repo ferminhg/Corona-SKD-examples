@@ -1,7 +1,6 @@
 module( ..., package.seeall )
 
 function new()
-
 	localGroup = display.newGroup()
 
 	display.setStatusBar( display.HiddenStatusBar )
@@ -12,12 +11,20 @@ function new()
 	local function pageRight(event)
 		if event.phase == 'ended' then
 			--cambia pagina hacia delante
-			director:changeScene('s2', "moveFromRight")
+			director:changeScene('s4', "moveFromRight")
 		end
 		return true
 	end
 
-	local bkg = display.newImageRect( "escena1.jpg",  _W, _H )
+	local function pageLeft(event)
+		if event.phase == 'ended' then
+			--cambia pagina hacia atras
+			director:changeScene('s2', "moveFromLeft")
+		end
+		return true
+	end
+
+	local bkg = display.newImageRect( "escena3.jpg",  _W, _H )
 	bkg.x = _W/2
 	bkg.y = _H/2
 
@@ -31,6 +38,7 @@ function new()
 	arrowL.xScale = -1
 
 	arrowR:addEventListener( "touch", pageRight )
+	arrowL:addEventListener( "touch", pageLeft )
 
 	localGroup:insert(bkg)
 	localGroup:insert(arrowR)
@@ -39,4 +47,3 @@ function new()
 	return localGroup
 
 end
-
