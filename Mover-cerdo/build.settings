@@ -9,4 +9,12 @@ settings =
 		},
 	},
 
+	iphone =
+	{
+		plist =
+        {
+        	UIStatusBarHidden = true,
+        }
+	}
+
 }

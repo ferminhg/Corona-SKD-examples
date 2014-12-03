@@ -1,3 +1,18 @@
+display.setStatusBar( display.HiddenStatusBar )
+
+local function onComplete(event)
+	if "clicked" == event.action then
+		local i = event.index 
+		if 1 == i then
+			-- No hacer nada, para cerrar el dialogo
+		elseif 2 == i then
+			-- Open url
+			system.openURL( "http://www.google.es" )
+		end
+	end
+end
+
+native.showAlert( "wopwop", "mensaje blabla" ,{"Ok" , "Saber Mas"}, onComplete )
 
 local object = display.newImageRect( "cerdito.png", 300 , 230 )
 
@@ -38,6 +53,20 @@ local function functionMoveObject(event)
 
 	return true;
 end
+
+
+local function onSystemEvent( event )
+
+	local eventType = event.type
+
+	if ( eventType == "applicationSuspend" ) then
+		-- acciones necesarias cuando el dispositivo es suspendido
+
+	elseif ( eventType == "applicationResume" ) then
+		-- acciones para cuando la app  vuelve de un estado suspendido
+	end
+end
+Runtime:addEventListener( "system", onSystemEvent )
 
 object:addEventListener( "touch", functionMoveObject)
 object2:addEventListener( "touch", functionMoveObject)
